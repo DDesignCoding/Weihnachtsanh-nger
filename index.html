@@ -38,9 +38,18 @@
       <div class="hero-text">
         <h1>Servus</h1>
         <p class="lead">Wir, Gerhard und Julia, lasern wieder Weihnachtsdeko, schon im dritten Jahr. Alles selbst gemacht, aus Holz.</p>
-        <p class="lead">Such dir aus, was dir gefällt, und schick uns deine Auswahl per WhatsApp.</p>
+        <a class="btn btn-primary wa-link" href="#bestellen">Jetzt per WhatsApp bestellen</a>
+      </div>
+    </div>
+  </section>
 
-        <a class="btn btn-primary" href="#personalisiert">Anhänger ansehen</a>
+
+  <!-- ===== Kurze Erklärung ===== -->
+  <section class="howto">
+    <div class="wrap">
+      <div class="howto-box">
+        <b>So geht’s:</b>
+        <p>Tippe bei allem, was dir gefällt, auf „Auswählen“. Deine Auswahl steht dann automatisch in der WhatsApp-Nachricht.</p>
       </div>
     </div>
   </section>
@@ -54,8 +63,8 @@
 
       <div class="price-note">
         <p><strong>5 €</strong> pro Anhänger</p>
-        <p><strong>5 Stück für 20 €</strong> – gern gemischt</p>
-        <p class="price-note-small">Geschenkanhänger Nr. 5: 3 Stück für 10 €</p>
+        <p><strong>5 Stück für 20&nbsp;€</strong> – gern gemischt</p>
+        <p class="price-note-small">Geschenkanhänger Nr. 5: 3 Stück für 10&nbsp;€</p>
       </div>
 
       <div class="grid">
@@ -105,7 +114,7 @@
             <div class="product" data-name="Nr. 5 Geschenkanhänger" data-namen="ja">
               <h3><span class="product-nr">Nr. 5</span> Geschenkanhänger</h3>
             </div>
-            <p>„für …“ mit Namen, 3 Stück für 10 €.</p>
+            <p>„für …“ mit Namen, 3 Stück für 10&nbsp;€.</p>
           </div>
         </article>
       </div>
@@ -216,7 +225,7 @@
       <p class="lead">Den Rest machen wir.</p>
 
       <ol class="steps">
-        <li><span class="step-nr">01</span><span>Bei jedem Anhänger, den du willst, auf <b>+</b> tippen</span></li>
+        <li><span class="step-nr">01</span><span>Bei allem, was dir gefällt, auf „Auswählen“ tippen</span></li>
         <li><span class="step-nr">02</span><span>Unten auf „Per WhatsApp bestellen“ tippen</span></li>
         <li><span class="step-nr">03</span><span>Namen dazuschreiben und abschicken</span></li>
       </ol>
@@ -233,10 +242,10 @@
 </main>
 
 
-<!-- ===== Bestell-Leiste (erscheint, sobald etwas ausgewählt ist) ===== -->
-<div class="order-bar" id="order-bar" hidden>
+<!-- ===== Bestell-Leiste (immer unten sichtbar) ===== -->
+<div class="order-bar">
   <div class="order-bar-inner">
-    <span class="order-bar-count" id="order-bar-count">1 ausgewählt</span>
+    <span class="order-bar-count" id="order-bar-count" hidden></span>
     <a class="btn btn-light wa-link" href="#bestellen">Per WhatsApp bestellen</a>
   </div>
 </div>
@@ -249,30 +258,34 @@
   const WHATSAPP_NUMMER = "491738282553";
 
   const products = document.querySelectorAll(".product");
-  const bar      = document.getElementById("order-bar");
   const barCount = document.getElementById("order-bar-count");
   const links    = document.querySelectorAll(".wa-link");
 
-  // − 0 + bei jedem Produkt einbauen
+  // Auswahl bei jedem Produkt einbauen:
+  // erst ein großer Knopf „Auswählen“, danach  −  Anzahl  +
   products.forEach(function (product) {
     product.dataset.count = 0;
 
-    const stepper = document.createElement("div");
-    stepper.className = "stepper";
-    stepper.innerHTML =
-      '<button type="button" class="minus" aria-label="Eins weniger">−</button>' +
-      '<span class="count" aria-live="polite">0</span>' +
-      '<button type="button" class="plus" aria-label="Eins mehr">+</button>';
-    product.appendChild(stepper);
+    const picker = document.createElement("div");
+    picker.className = "picker";
+    picker.innerHTML =
+      '<button type="button" class="pick-add">+ Auswählen</button>' +
+      '<div class="pick-stepper">' +
+        '<button type="button" class="minus" aria-label="Eins weniger">−</button>' +
+        '<span class="count" aria-live="polite">0</span>' +
+        '<button type="button" class="plus" aria-label="Eins mehr">+</button>' +
+      '</div>';
+    product.appendChild(picker);
 
-    stepper.querySelector(".plus").addEventListener("click", function () { change(product, 1); });
-    stepper.querySelector(".minus").addEventListener("click", function () { change(product, -1); });
+    picker.querySelector(".pick-add").addEventListener("click", function () { change(product, 1); });
+    picker.querySelector(".plus").addEventListener("click", function () { change(product, 1); });
+    picker.querySelector(".minus").addEventListener("click", function () { change(product, -1); });
   });
 
   function change(product, delta) {
     const count = Math.max(0, Number(product.dataset.count) + delta);
     product.dataset.count = count;
-    product.querySelector(".count").textContent = count;
+    product.querySelector(".count").textContent = count + " Stück";
     product.classList.toggle("is-selected", count > 0);
     update();
   }
@@ -292,7 +305,8 @@
       }
     });
 
-    let text = "Hallo Gerhard und Julia, ich möchte gerne Anhänger bestellen: ";
+    // Nichts ausgewählt: einfache Nachricht ohne Liste
+    let text = "Hallo Gerhard und Julia, ich möchte gerne bestellen: ";
     if (total > 0) {
       text = "Hallo Gerhard und Julia, ich möchte gerne bestellen:\n\n" + lines.join("\n");
       if (needsNames) text += "\n\nNamen: ";
@@ -304,8 +318,7 @@
       link.rel = "noopener";
     });
 
-    bar.hidden = total === 0;
-    document.body.classList.toggle("has-order-bar", total > 0);
+    barCount.hidden = total === 0;
     barCount.textContent = total + " ausgewählt";
   }
 
