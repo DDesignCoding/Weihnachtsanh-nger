@@ -1,1 +1,462 @@
+/* ==========================================================
+   Weihnachtsaktion 2026 – Holzanhänger von Gerhard & Julia
+   ========================================================== */
 
+
+/* ---------- Schriften ---------- */
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("fonts/bricolage.woff2") format("woff2");
+  font-weight: 200 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/inter.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+
+/* ---------- Farben & Variablen ---------- */
+
+:root {
+  --bg: #F5F1EA;
+  --ink: #1A1814;
+  --muted: #5E584F;
+  --card: #FFFDF9;
+  --line: #E6DFD3;
+  --accent: #2C4636;
+  --dark-line: #4A453D;
+  --dark-muted: #D8D1C5;
+  --on-accent: #E4E0D6;
+
+  --display: "Bricolage Grotesque", system-ui, sans-serif;
+  --text: "Inter", system-ui, sans-serif;
+}
+
+
+/* ---------- Grundlagen ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--text);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: var(--accent);
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 800;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: block;
+  padding: 16px 24px;
+  border-radius: 999px;
+  font-size: 17px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  transition: transform .15s ease, opacity .15s ease;
+}
+
+.btn:hover {
+  opacity: .92;
+}
+
+.btn:active {
+  transform: scale(.98);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.btn-light {
+  padding: 18px 24px;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+
+/* ---------- Hero ---------- */
+
+.hero .wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 16px 20px 40px;
+}
+
+.hero-img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  object-position: 50% 40%;
+  border-radius: 28px;
+}
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.hero h1 {
+  font-size: 45px;
+  line-height: .95;
+  letter-spacing: -0.035em;
+}
+
+.lead {
+  margin: 0;
+  font-size: 17px;
+  color: var(--muted);
+}
+
+
+/* ---------- Produkt-Abschnitte ---------- */
+
+.section .wrap {
+  padding: 40px 20px 16px;
+}
+
+#personalisiert .wrap {
+  padding-top: 48px;
+}
+
+.eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.section h2 {
+  margin: 6px 0 8px;
+  font-size: 38px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.section-intro {
+  margin: 0 0 20px;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+
+/* ---------- Produktkarten ---------- */
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+}
+
+.card {
+  min-width: 0;
+  overflow: hidden;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.card img.rot {
+  transform: rotate(-90deg);
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 20px 20px;
+}
+
+.card h3 {
+  font-size: 24px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.card p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.price-tag {
+  margin-top: 4px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+
+/* ---------- Gut zu wissen ---------- */
+
+#infos .wrap {
+  padding: 40px 20px 48px;
+}
+
+#infos h2 {
+  margin: 0 0 20px;
+  font-size: 38px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.infos {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 20px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+}
+
+.info b {
+  font-family: var(--display);
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.info p {
+  margin: 0;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.info.is-accent {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+}
+
+.info.is-accent p {
+  color: var(--on-accent);
+}
+
+
+/* ---------- Bestellen ---------- */
+
+.order {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.order .wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 48px 20px 32px;
+}
+
+.order h2 {
+  font-size: 44px;
+  line-height: .95;
+  letter-spacing: -0.03em;
+}
+
+.order .lead {
+  color: var(--dark-muted);
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.steps li {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--dark-line);
+}
+
+.step-nr {
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--dark-muted);
+}
+
+.order .btn {
+  margin-top: 8px;
+}
+
+
+/* ==========================================================
+   Tablet (ab 720 px)
+   ========================================================== */
+
+@media (min-width: 720px) {
+
+  .hero .wrap,
+  .section .wrap,
+  #infos .wrap,
+  .order .wrap {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  .infos {
+    flex-direction: row;
+  }
+
+  .info {
+    flex: 1;
+  }
+}
+
+
+/* ==========================================================
+   Desktop (ab 960 px)
+   ========================================================== */
+
+@media (min-width: 960px) {
+
+  /* Hero: Bild links, Text rechts */
+  .hero .wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 56px;
+    padding-top: 40px;
+    padding-bottom: 72px;
+  }
+
+  .hero-img {
+    height: 600px;
+    border-radius: 36px;
+  }
+
+  .hero h1 {
+    font-size: 76px;
+  }
+
+  .lead {
+    font-size: 19px;
+  }
+
+  .hero .btn {
+    align-self: flex-start;
+    padding: 18px 32px;
+  }
+
+  /* Abschnitte */
+  .section .wrap {
+    padding-top: 80px;
+  }
+
+  .section h2,
+  #infos h2 {
+    font-size: 56px;
+  }
+
+  .section-intro {
+    margin-bottom: 32px;
+    font-size: 17px;
+  }
+
+  .card h3 {
+    font-size: 28px;
+  }
+
+  /* Bestellen: Text links, Schritte rechts */
+  .order .wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 64px;
+    row-gap: 20px;
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .order h2 {
+    grid-column: 1;
+    font-size: 72px;
+  }
+
+  .order .lead {
+    grid-column: 1;
+  }
+
+  .order .steps {
+    grid-column: 2;
+    grid-row: 1 / span 3;
+    align-self: center;
+  }
+
+  .order .btn {
+    grid-column: 1;
+    justify-self: start;
+    padding: 18px 32px;
+  }
+}
