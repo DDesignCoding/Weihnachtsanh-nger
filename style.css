@@ -476,6 +476,20 @@ body {
 }
 
 
+/* ---------- Video ---------- */
+
+.video {
+  display: block;
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  aspect-ratio: 4 / 5;      /* etwas höher als breit */
+  object-fit: cover;
+  background: var(--line);
+  border-radius: 20px;
+}
+
+
 /* ---------- Gut zu wissen ---------- */
 
 #infos .wrap {
