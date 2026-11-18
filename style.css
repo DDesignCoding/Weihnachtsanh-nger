@@ -397,10 +397,11 @@ h3 {
   right: 0;
   bottom: 0;
   z-index: 20;
-  padding: 12px 20px calc(12px + env(safe-area-inset-bottom));
-  background: var(--ink);
-  color: var(--bg);
-  box-shadow: 0 -4px 20px rgba(26, 24, 20, .2);
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+  background: rgba(245, 241, 234, .92);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--line);
 }
 
 .order-bar-inner {
@@ -411,25 +412,63 @@ h3 {
   margin: 0 auto;
 }
 
-.order-bar-count {
+/* Anzahl im Knopf, z. B. „3“ */
+.order-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 8px;
+  background: var(--bg);
+  color: var(--accent);
+  border-radius: 999px;
   font-size: 16px;
-  font-weight: 600;
-  white-space: nowrap;
+  font-weight: 800;
 }
 
-.order-bar-count[hidden] {
+.order-badge[hidden] {
   display: none;
 }
 
-.order-bar .btn {
+/* Der Haupt-Knopf */
+.btn-whatsapp {
+  display: flex;
   flex: 1;
-  padding: 14px 18px;
-  font-size: 17px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 60px;
+  padding: 16px 24px;
+  font-size: 18px;
+  font-weight: 700;
   white-space: nowrap;
+  box-shadow: 0 6px 18px rgba(44, 70, 54, .35);
+}
+
+.btn-whatsapp:hover {
+  opacity: 1;
+  background: #233A2C;
+}
+
+.btn-icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.btn-whatsapp.bump {
+  animation: bump .35s ease;
+}
+
+@keyframes bump {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 
 body {
-  padding-bottom: 90px;
+  padding-bottom: 96px;
 }
 
 
@@ -553,10 +592,6 @@ body {
   font-size: 18px;
 }
 
-.order .btn {
-  margin-top: 8px;
-}
-
 
 /* ==========================================================
    Tablet (ab 720 px)
@@ -617,11 +652,6 @@ body {
     font-size: 20px;
   }
 
-  .hero .btn {
-    align-self: flex-start;
-    padding: 18px 32px;
-  }
-
   /* Abschnitte */
   .section .wrap {
     padding-top: 80px;
@@ -645,9 +675,9 @@ body {
     justify-content: flex-end;
   }
 
-  .order-bar .btn {
+  .btn-whatsapp {
     flex: 0 0 auto;
-    padding: 14px 32px;
+    padding: 16px 40px;
   }
 
   /* Bestellen: Text links, Schritte rechts */
@@ -679,9 +709,4 @@ body {
     align-self: center;
   }
 
-  .order .btn {
-    grid-column: 1;
-    justify-self: start;
-    padding: 18px 32px;
-  }
 }
