@@ -18,9 +18,10 @@
 </head>
 
 <!--
-  WHATSAPP-NUMMER: An ZWEI Stellen unten "491738282553" durch eure Nummer ersetzen.
-  Format: Ländervorwahl ohne + und ohne führende 0, keine Leerzeichen.
-  Beispiel: 0170 1234567 (Deutschland) wird zu 491701234567
+  WHATSAPP-NUMMER: Steht nur noch an EINER Stelle, ganz unten im <script>.
+  Alle Bestell-Knöpfe holen sich die Nummer von dort.
+
+  Bestell-Text eines Knopfs ändern: einfach den Text in data-text="..." anpassen.
 -->
 
 <body>
@@ -37,48 +38,75 @@
       <div class="hero-text">
         <h1>Servus</h1>
         <p class="lead">Wir, Gerhard und Julia, lasern wieder Weihnachtsdeko, schon im dritten Jahr. Alles selbst gemacht, aus Holz.</p>
+        <p class="lead">Such dir einfach die <strong>Nummer</strong> aus, die dir gefällt, und schreib sie uns per WhatsApp.</p>
 
-        <!-- WhatsApp-Nummer 1 von 2 -->
-        <a class="btn btn-primary"
-           href="https://wa.me/491738282553?text=Hallo%20Gerhard%20und%20Julia%2C%20ich%20m%C3%B6chte%20gerne%20Anh%C3%A4nger%20bestellen%3A%20"
-           target="_blank" rel="noopener">Jetzt per WhatsApp bestellen</a>
+        <a class="btn btn-primary wa-link" href="#bestellen"
+           data-text="Hallo Gerhard und Julia, ich möchte gerne Anhänger bestellen: ">Jetzt per WhatsApp bestellen</a>
       </div>
     </div>
   </section>
 
 
-  <!-- ===== Personalisiert ===== -->
+  <!-- ===== Mit Namen ===== -->
   <section class="section" id="personalisiert">
     <div class="wrap">
-      <div class="eyebrow">Personalisiert</div>
-      <h2>Mit Namen.</h2>
-      <p class="section-intro">
-        <strong>Jeder Name, den du willst.<br>5 € pro Stück, 5 Stück für 20 €.</strong>
-      </p>
+      <div class="eyebrow">Mit Namen</div>
+      <h2>Mit deinem Wunschnamen.</h2>
+      <p class="section-intro">Jeder Name, den du willst.</p>
+
+      <div class="price-note">
+        <p><strong>5 €</strong> pro Anhänger</p>
+        <p><strong>5 Stück für 20 €</strong> – gern gemischt</p>
+        <p class="price-note-small">Geschenkanhänger Nr. 4: 3 Stück für 10 €</p>
+      </div>
 
       <div class="grid">
         <article class="card">
-          <img src="Produktbilder/zweig-kugeln-mit-namen.jpg"
-               alt="Zweig-Kugeln mit den Namen Maximilian und Elisabeth"
-               loading="lazy" width="1000" height="1250">
+          <div class="card-media">
+            <span class="nr">Nr. 1</span>
+            <img src="Produktbilder/zweig-kugeln-mit-namen.jpg"
+                 alt="Zweig-Kugeln mit den Namen Maximilian und Elisabeth"
+                 loading="lazy" width="1000" height="1250">
+          </div>
+          <div class="card-body">
+            <h3>Kugel mit Zweig</h3>
+            <a class="btn btn-order wa-link" href="#bestellen"
+               data-text="Hallo Gerhard und Julia, ich möchte Nr. 1 (Kugel mit Zweig) bestellen. Name(n): ">Nr. 1 bestellen</a>
+          </div>
         </article>
 
         <article class="card">
-          <img src="Produktbilder/pulli-und-baum-mit-namen.jpg"
-               alt="Pulli- und Tannenbaum-Anhänger mit Namen an einem Geschenk"
-               loading="lazy" width="1000" height="1250">
+          <div class="card-media">
+            <span class="nr">Nr. 2 + Nr. 3</span>
+            <img src="Produktbilder/pulli-und-baum-mit-namen.jpg"
+                 alt="Pullover- und Tannenbaum-Anhänger mit Namen an einem Geschenk"
+                 loading="lazy" width="1000" height="1250">
+          </div>
+          <div class="card-body">
+            <h3>Nr. 2 Pullover<br>Nr. 3 Tannenbaum</h3>
+            <div class="btn-row">
+              <a class="btn btn-order wa-link" href="#bestellen"
+                 data-text="Hallo Gerhard und Julia, ich möchte Nr. 2 (Pullover) bestellen. Name(n): ">Nr. 2 bestellen</a>
+              <a class="btn btn-order wa-link" href="#bestellen"
+                 data-text="Hallo Gerhard und Julia, ich möchte Nr. 3 (Tannenbaum) bestellen. Name(n): ">Nr. 3 bestellen</a>
+            </div>
+          </div>
         </article>
 
         <article class="card">
+          <div class="card-media">
+            <span class="nr">Nr. 4</span>
+            <img class="rot"
+                 src="Produktbilder/geschenkanhaenger-mit-namen.jpg"
+                 alt="Geschenkanhänger „für Christine“ und „für Severin“ auf Leinen"
+                 loading="lazy" width="1000" height="1250">
+          </div>
           <div class="card-body">
             <h3>Geschenkanhänger</h3>
-            <p>„für …“ mit Namen.</p>
-            <div class="price-tag">3 für 10 €</div>
+            <p>„für …“ mit Namen, 3 Stück für 10 €.</p>
+            <a class="btn btn-order wa-link" href="#bestellen"
+               data-text="Hallo Gerhard und Julia, ich möchte Nr. 4 (Geschenkanhänger) bestellen. Name(n): ">Nr. 4 bestellen</a>
           </div>
-          <img class="rot"
-               src="Produktbilder/geschenkanhaenger-mit-namen.jpg"
-               alt="Geschenkanhänger „für Christine“ und „für Severin“ auf Leinen"
-               loading="lazy" width="1000" height="1250">
         </article>
       </div>
     </div>
@@ -90,44 +118,66 @@
     <div class="wrap">
       <div class="eyebrow">Sets</div>
       <h2>Fertig zum Aufhängen.</h2>
-      <p class="section-intro">
-        <strong>Ohne Namen, direkt fertig. 8 € pro Set.</strong>
-      </p>
+      <p class="section-intro">Ohne Namen, direkt fertig.</p>
+
+      <div class="price-note">
+        <p><strong>8 €</strong> pro Set</p>
+      </div>
 
       <div class="grid">
         <article class="card">
-          <img src="Produktbilder/set-weihnachtspost.jpg"
-               alt="Briefmarken-Anhänger an einem Geschenk mit grüner Schleife"
-               loading="lazy" width="1000" height="1250">
+          <div class="card-media">
+            <span class="nr">Nr. 5</span>
+            <img src="Produktbilder/set-weihnachtspost.jpg"
+                 alt="Briefmarken-Anhänger an einem Geschenk mit grüner Schleife"
+                 loading="lazy" width="1000" height="1250">
+          </div>
           <div class="card-body">
             <h3>Weihnachtspost</h3>
+            <a class="btn btn-order wa-link" href="#bestellen"
+               data-text="Hallo Gerhard und Julia, ich möchte das Set Nr. 5 (Weihnachtspost) bestellen. Anzahl: ">Nr. 5 bestellen</a>
           </div>
         </article>
 
         <article class="card">
-          <img src="Produktbilder/set-skifahrer.jpg"
-               alt="Gondel-Anhänger „Frohe Weihnachten“ und Skifahrer-Kugel"
-               loading="lazy" width="1000" height="1250">
+          <div class="card-media">
+            <span class="nr">Nr. 6</span>
+            <img src="Produktbilder/set-skifahrer.jpg"
+                 alt="Gondel-Anhänger „Frohe Weihnachten“ und Skifahrer-Kugel"
+                 loading="lazy" width="1000" height="1250">
+          </div>
           <div class="card-body">
-            <h3>Skifahrer-Set</h3>
+            <h3>Skifahrer</h3>
+            <a class="btn btn-order wa-link" href="#bestellen"
+               data-text="Hallo Gerhard und Julia, ich möchte das Set Nr. 6 (Skifahrer) bestellen. Anzahl: ">Nr. 6 bestellen</a>
           </div>
         </article>
 
         <article class="card">
-          <img src="Produktbilder/set-line-art-kugeln.jpg"
-               alt="Line-Art-Kugeln mit Rentier, Glocke und Bäumen"
-               loading="lazy" width="1000" height="1250">
+          <div class="card-media">
+            <span class="nr">Nr. 7</span>
+            <img src="Produktbilder/set-line-art-kugeln.jpg"
+                 alt="Kugeln mit gezeichnetem Rentier, Glocke und Bäumen"
+                 loading="lazy" width="1000" height="1250">
+          </div>
           <div class="card-body">
-            <h3>Line-Art-Kugeln</h3>
+            <h3>Rentier &amp; Glocke</h3>
+            <a class="btn btn-order wa-link" href="#bestellen"
+               data-text="Hallo Gerhard und Julia, ich möchte das Set Nr. 7 (Rentier und Glocke) bestellen. Anzahl: ">Nr. 7 bestellen</a>
           </div>
         </article>
 
         <article class="card">
-          <img src="Produktbilder/set-tannenbaeume.jpg"
-               alt="Drei Tannenbaum-Anhänger aus Holz am Zweig"
-               loading="lazy" width="1000" height="1250">
+          <div class="card-media">
+            <span class="nr">Nr. 8</span>
+            <img src="Produktbilder/set-tannenbaeume.jpg"
+                 alt="Drei Tannenbaum-Anhänger aus Holz am Zweig"
+                 loading="lazy" width="1000" height="1250">
+          </div>
           <div class="card-body">
             <h3>Tannenbäume</h3>
+            <a class="btn btn-order wa-link" href="#bestellen"
+               data-text="Hallo Gerhard und Julia, ich möchte das Set Nr. 8 (Tannenbäume) bestellen. Anzahl: ">Nr. 8 bestellen</a>
           </div>
         </article>
       </div>
@@ -142,7 +192,7 @@
 
       <div class="infos">
         <div class="info">
-          <b>max. 7 Tage</b>
+          <b>Höchstens 7 Tage</b>
           <p>So lange dauern Lasern und Versand, ab deiner Bestellung.</p>
         </div>
 
@@ -164,21 +214,37 @@
   <section class="order" id="bestellen">
     <div class="wrap">
       <h2>Schreib uns einfach.</h2>
-      <p class="lead">Name + Motiv reicht. Den Rest machen wir.</p>
+      <p class="lead">Nummer + Name reicht. Den Rest machen wir.</p>
 
       <ol class="steps">
-        <li><span class="step-nr">01</span><span>Motiv aussuchen</span></li>
-        <li><span class="step-nr">02</span><span>Namen per Nachricht schicken</span></li>
-        <li><span class="step-nr">03</span><span>Abholen oder liefern lassen, in max. 7 Tagen</span></li>
+        <li><span class="step-nr">01</span><span>Nummer aussuchen</span></li>
+        <li><span class="step-nr">02</span><span>Nummer und Namen per WhatsApp schicken</span></li>
+        <li><span class="step-nr">03</span><span>Abholen oder schicken lassen, in höchstens 7 Tagen</span></li>
       </ol>
 
-      <!-- WhatsApp-Nummer 2 von 2 -->
-      <a class="btn btn-light"
-         href="https://wa.me/491738282553?text=Hallo%20Gerhard%20und%20Julia%2C%20ich%20m%C3%B6chte%20gerne%20Anh%C3%A4nger%20bestellen%3A%20"
-         target="_blank" rel="noopener">Per WhatsApp bestellen</a>
+      <div class="example">
+        <span class="example-label">So kann deine Nachricht aussehen:</span>
+        <p>„2× Nr. 1 mit Oma und Opa, 1× Nr. 6. Abholung in München.“</p>
+      </div>
+
+      <a class="btn btn-light wa-link" href="#bestellen"
+         data-text="Hallo Gerhard und Julia, ich möchte gerne Anhänger bestellen: ">Per WhatsApp bestellen</a>
     </div>
   </section>
 
 </main>
+
+<script>
+  // WHATSAPP-NUMMER: nur hier ändern.
+  // Format: Ländervorwahl ohne + und ohne führende 0, keine Leerzeichen.
+  // Beispiel: 0170 1234567 (Deutschland) wird zu 491701234567
+  const WHATSAPP_NUMMER = "491738282553";
+
+  document.querySelectorAll(".wa-link").forEach(function (link) {
+    link.href = "https://wa.me/" + WHATSAPP_NUMMER + "?text=" + encodeURIComponent(link.dataset.text);
+    link.target = "_blank";
+    link.rel = "noopener";
+  });
+</script>
 </body>
 </html>
