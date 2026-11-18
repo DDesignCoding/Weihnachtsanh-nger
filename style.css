@@ -285,18 +285,16 @@ h3 {
 }
 
 
-/* ---------- Produkt-Zeile mit − 0 + ---------- */
+/* ---------- Produkt mit Auswahl ---------- */
 
 .product {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px 16px;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .product + .product {
-  padding-top: 12px;
+  padding-top: 16px;
   border-top: 1px solid var(--line);
 }
 
@@ -304,49 +302,94 @@ h3 {
   color: var(--accent);
 }
 
-.stepper {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.stepper button {
-  width: 48px;
-  height: 48px;
-  padding: 0;
+/* Knopf „+ Auswählen“ (wenn noch nichts gewählt ist) */
+.pick-add {
+  width: 100%;
+  height: 60px;
   border: 2px solid var(--accent);
-  border-radius: 50%;
+  border-radius: 999px;
   background: transparent;
   color: var(--accent);
-  font: 600 26px/1 var(--text);
+  font: 600 19px/1 var(--text);
   cursor: pointer;
-  transition: transform .1s ease;
+  transition: background .15s ease, color .15s ease, transform .1s ease;
 }
 
-.stepper button:active {
-  transform: scale(.92);
-}
-
-.stepper .plus {
+.pick-add:hover {
   background: var(--accent);
   color: var(--bg);
 }
 
-.stepper .count {
-  min-width: 36px;
+/* −  2 Stück  +  (sobald etwas gewählt ist) */
+.pick-stepper {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  padding: 6px;
+  background: var(--accent);
+  border-radius: 999px;
+  color: var(--bg);
+}
+
+.product.is-selected .pick-add {
+  display: none;
+}
+
+.product.is-selected .pick-stepper {
+  display: flex;
+}
+
+.pick-stepper button {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--bg);
+  color: var(--accent);
+  font: 500 28px/1 var(--text);
+  cursor: pointer;
+  transition: transform .1s ease;
+}
+
+.pick-add:active,
+.pick-stepper button:active {
+  transform: scale(.94);
+}
+
+.pick-stepper .count {
   font-family: var(--display);
   font-size: 22px;
   font-weight: 800;
-  text-align: center;
-  color: var(--muted);
-}
-
-.product.is-selected .count {
-  color: var(--accent);
 }
 
 
-/* ---------- Bestell-Leiste unten ---------- */
+/* ---------- Kurze Erklärung nach dem Hero ---------- */
+
+.howto .wrap {
+  padding: 0 20px;
+}
+
+.howto-box {
+  padding: 18px 20px;
+  background: var(--accent-soft);
+  border-radius: 20px;
+}
+
+.howto-box b {
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.howto-box p {
+  margin: 4px 0 0;
+  font-size: 18px;
+}
+
+
+/* ---------- Bestell-Leiste unten (immer sichtbar) ---------- */
 
 .order-bar {
   position: fixed;
@@ -360,14 +403,9 @@ h3 {
   box-shadow: 0 -4px 20px rgba(26, 24, 20, .2);
 }
 
-.order-bar[hidden] {
-  display: none;
-}
-
 .order-bar-inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 12px;
   max-width: 1120px;
   margin: 0 auto;
@@ -379,13 +417,18 @@ h3 {
   white-space: nowrap;
 }
 
+.order-bar-count[hidden] {
+  display: none;
+}
+
 .order-bar .btn {
+  flex: 1;
   padding: 14px 18px;
-  font-size: 16px;
+  font-size: 17px;
   white-space: nowrap;
 }
 
-body.has-order-bar {
+body {
   padding-bottom: 90px;
 }
 
@@ -522,6 +565,7 @@ body.has-order-bar {
 @media (min-width: 720px) {
 
   .hero .wrap,
+  .howto .wrap,
   .section .wrap,
   #infos .wrap,
   .order .wrap {
@@ -595,6 +639,15 @@ body.has-order-bar {
   .order-bar {
     padding-left: 32px;
     padding-right: 32px;
+  }
+
+  .order-bar-inner {
+    justify-content: flex-end;
+  }
+
+  .order-bar .btn {
+    flex: 0 0 auto;
+    padding: 14px 32px;
   }
 
   /* Bestellen: Text links, Schritte rechts */
