@@ -25,10 +25,11 @@
 :root {
   --bg: #F5F1EA;
   --ink: #1A1814;
-  --muted: #5E584F;
+  --muted: #4A453E;          /* etwas dunkler als vorher, besser lesbar */
   --card: #FFFDF9;
   --line: #E6DFD3;
   --accent: #2C4636;
+  --accent-soft: #E3E8E2;
   --dark-line: #4A453D;
   --dark-muted: #D8D1C5;
   --on-accent: #E4E0D6;
@@ -55,7 +56,7 @@ body {
   background: var(--bg);
   color: var(--ink);
   font-family: var(--text);
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
@@ -90,7 +91,7 @@ h3 {
   display: block;
   padding: 16px 24px;
   border-radius: 999px;
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 600;
   text-align: center;
   text-decoration: none;
@@ -114,6 +115,25 @@ h3 {
   padding: 18px 24px;
   background: var(--bg);
   color: var(--ink);
+}
+
+/* Bestell-Knopf in den Produktkarten */
+.btn-order {
+  margin-top: 10px;
+  padding: 14px 20px;
+  background: var(--accent);
+  color: var(--bg);
+  font-size: 17px;
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.btn-row .btn {
+  flex: 1 1 140px;
 }
 
 
@@ -148,8 +168,12 @@ h3 {
 
 .lead {
   margin: 0;
-  font-size: 17px;
+  font-size: 18px;
   color: var(--muted);
+}
+
+.lead strong {
+  color: var(--ink);
 }
 
 
@@ -164,7 +188,7 @@ h3 {
 }
 
 .eyebrow {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: .06em;
   text-transform: uppercase;
@@ -180,8 +204,37 @@ h3 {
 }
 
 .section-intro {
-  margin: 0 0 20px;
-  font-size: 15px;
+  margin: 0 0 16px;
+  font-size: 18px;
+  color: var(--muted);
+}
+
+
+/* ---------- Preis-Hinweis (einmal pro Abschnitt) ---------- */
+
+.price-note {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 24px;
+  padding: 14px 20px;
+  background: var(--accent-soft);
+  border-left: 4px solid var(--accent);
+  border-radius: 12px;
+}
+
+.price-note p {
+  margin: 0;
+  font-size: 18px;
+}
+
+.price-note strong {
+  color: var(--accent);
+}
+
+.price-note-small {
+  margin-top: 4px !important;
+  font-size: 16px !important;
   color: var(--muted);
 }
 
@@ -195,11 +248,18 @@ h3 {
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
   min-width: 0;
   overflow: hidden;
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: 20px;
+}
+
+.card-media {
+  position: relative;
+  overflow: hidden;
 }
 
 .card img {
@@ -213,31 +273,50 @@ h3 {
   transform: rotate(-90deg);
 }
 
+/* Nummer auf dem Foto, wie ein Etikett */
+.nr {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 1;
+  padding: 6px 14px;
+  background: var(--card);
+  color: var(--ink);
+  border-radius: 999px;
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: 800;
+  box-shadow: 0 2px 8px rgba(26, 24, 20, .15);
+}
+
 .card-body {
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: 6px;
   padding: 18px 20px 20px;
 }
 
+.card-body .btn-order,
+.card-body .btn-row {
+  margin-top: auto;
+}
+
+.card-body .btn-row .btn-order {
+  margin-top: 10px;
+}
+
 .card h3 {
   font-size: 24px;
-  line-height: 1.1;
+  line-height: 1.15;
   letter-spacing: -0.02em;
 }
 
 .card p {
   margin: 0;
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.45;
   color: var(--muted);
-}
-
-.price-tag {
-  margin-top: 4px;
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--accent);
 }
 
 
@@ -279,7 +358,7 @@ h3 {
 
 .info p {
   margin: 0;
-  font-size: 15px;
+  font-size: 17px;
   color: var(--muted);
 }
 
@@ -342,6 +421,25 @@ h3 {
   color: var(--dark-muted);
 }
 
+/* Beispiel-Nachricht, sieht aus wie eine Chat-Blase */
+.example {
+  padding: 16px 20px;
+  background: #2E3A31;
+  border-radius: 18px 18px 18px 4px;
+}
+
+.example-label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 14px;
+  color: var(--dark-muted);
+}
+
+.example p {
+  margin: 0;
+  font-size: 18px;
+}
+
 .order .btn {
   margin-top: 8px;
 }
@@ -402,7 +500,7 @@ h3 {
   }
 
   .lead {
-    font-size: 19px;
+    font-size: 20px;
   }
 
   .hero .btn {
@@ -421,8 +519,7 @@ h3 {
   }
 
   .section-intro {
-    margin-bottom: 32px;
-    font-size: 17px;
+    font-size: 19px;
   }
 
   .card h3 {
@@ -448,9 +545,13 @@ h3 {
     grid-column: 1;
   }
 
+  .order .example {
+    grid-column: 1;
+  }
+
   .order .steps {
     grid-column: 2;
-    grid-row: 1 / span 3;
+    grid-row: 1 / span 4;
     align-self: center;
   }
 
