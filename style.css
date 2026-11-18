@@ -117,26 +117,6 @@ h3 {
   color: var(--ink);
 }
 
-/* Bestell-Knopf in den Produktkarten */
-.btn-order {
-  margin-top: 10px;
-  padding: 14px 20px;
-  background: var(--accent);
-  color: var(--bg);
-  font-size: 17px;
-}
-
-.btn-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.btn-row .btn {
-  flex: 1 1 140px;
-}
-
-
 /* ---------- Hero ---------- */
 
 .hero .wrap {
@@ -196,17 +176,11 @@ h3 {
 }
 
 .section h2 {
-  margin: 6px 0 8px;
+  margin: 6px 0 16px;
   font-size: 38px;
   font-weight: 600;
   line-height: 1;
   letter-spacing: -0.03em;
-}
-
-.section-intro {
-  margin: 0 0 16px;
-  font-size: 18px;
-  color: var(--muted);
 }
 
 
@@ -293,17 +267,8 @@ h3 {
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: 6px;
+  gap: 12px;
   padding: 18px 20px 20px;
-}
-
-.card-body .btn-order,
-.card-body .btn-row {
-  margin-top: auto;
-}
-
-.card-body .btn-row .btn-order {
-  margin-top: 10px;
 }
 
 .card h3 {
@@ -317,6 +282,111 @@ h3 {
   font-size: 17px;
   line-height: 1.45;
   color: var(--muted);
+}
+
+
+/* ---------- Produkt-Zeile mit − 0 + ---------- */
+
+.product {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 16px;
+}
+
+.product + .product {
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.product-nr {
+  color: var(--accent);
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.stepper button {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--accent);
+  font: 600 26px/1 var(--text);
+  cursor: pointer;
+  transition: transform .1s ease;
+}
+
+.stepper button:active {
+  transform: scale(.92);
+}
+
+.stepper .plus {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.stepper .count {
+  min-width: 36px;
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 800;
+  text-align: center;
+  color: var(--muted);
+}
+
+.product.is-selected .count {
+  color: var(--accent);
+}
+
+
+/* ---------- Bestell-Leiste unten ---------- */
+
+.order-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+  padding: 12px 20px calc(12px + env(safe-area-inset-bottom));
+  background: var(--ink);
+  color: var(--bg);
+  box-shadow: 0 -4px 20px rgba(26, 24, 20, .2);
+}
+
+.order-bar[hidden] {
+  display: none;
+}
+
+.order-bar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.order-bar-count {
+  font-size: 16px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.order-bar .btn {
+  padding: 14px 18px;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+body.has-order-bar {
+  padding-bottom: 90px;
 }
 
 
@@ -518,12 +588,13 @@ h3 {
     font-size: 56px;
   }
 
-  .section-intro {
-    font-size: 19px;
+  .card h3 {
+    font-size: 26px;
   }
 
-  .card h3 {
-    font-size: 28px;
+  .order-bar {
+    padding-left: 32px;
+    padding-right: 32px;
   }
 
   /* Bestellen: Text links, Schritte rechts */
