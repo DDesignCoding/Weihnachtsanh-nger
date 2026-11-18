@@ -1,716 +1,344 @@
-/* ==========================================================
-   Weihnachtsaktion 2026 – Holzanhänger von Gerhard & Julia
-   ========================================================== */
-
-
-/* ---------- Schriften ---------- */
-
-@font-face {
-  font-family: "Bricolage Grotesque";
-  src: url("fonts/bricolage.woff2") format("woff2");
-  font-weight: 200 800;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Inter";
-  src: url("fonts/inter.woff2") format("woff2");
-  font-weight: 100 900;
-  font-display: swap;
-}
-
-
-/* ---------- Farben & Variablen ---------- */
-
-:root {
-  --bg: #F5F1EA;
-  --ink: #1A1814;
-  --muted: #4A453E;          /* etwas dunkler als vorher, besser lesbar */
-  --card: #FFFDF9;
-  --line: #E6DFD3;
-  --accent: #2C4636;
-  --accent-soft: #E3E8E2;
-  --dark-line: #4A453D;
-  --dark-muted: #D8D1C5;
-  --on-accent: #E4E0D6;
-
-  --display: "Bricolage Grotesque", system-ui, sans-serif;
-  --text: "Inter", system-ui, sans-serif;
-}
-
-
-/* ---------- Grundlagen ---------- */
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--ink);
-  font-family: var(--text);
-  font-size: 18px;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-}
-
-a {
-  color: var(--accent);
-}
-
-h1,
-h2,
-h3 {
-  margin: 0;
-  font-family: var(--display);
-  font-weight: 800;
-}
-
-.wrap {
-  width: 100%;
-  max-width: 1120px;
-  margin: 0 auto;
-}
-
-
-/* ---------- Buttons ---------- */
-
-.btn {
-  display: block;
-  padding: 16px 24px;
-  border-radius: 999px;
-  font-size: 18px;
-  font-weight: 600;
-  text-align: center;
-  text-decoration: none;
-  transition: transform .15s ease, opacity .15s ease;
-}
-
-.btn:hover {
-  opacity: .92;
-}
-
-.btn:active {
-  transform: scale(.98);
-}
-
-.btn-primary {
-  background: var(--accent);
-  color: var(--bg);
-}
-
-.btn-light {
-  padding: 18px 24px;
-  background: var(--bg);
-  color: var(--ink);
-}
-
-/* ---------- Hero ---------- */
-
-.hero .wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 16px 20px 40px;
-}
-
-.hero-img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  object-position: 50% 40%;
-  border-radius: 28px;
-}
-
-.hero-text {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.hero h1 {
-  font-size: 45px;
-  line-height: .95;
-  letter-spacing: -0.035em;
-}
-
-.lead {
-  margin: 0;
-  font-size: 18px;
-  color: var(--muted);
-}
-
-.lead strong {
-  color: var(--ink);
-}
-
-
-/* ---------- Produkt-Abschnitte ---------- */
-
-.section .wrap {
-  padding: 40px 20px 16px;
-}
-
-#personalisiert .wrap {
-  padding-top: 48px;
-}
-
-.eyebrow {
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.section h2 {
-  margin: 6px 0 16px;
-  font-size: 38px;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: -0.03em;
-}
-
-
-/* ---------- Preis-Hinweis (einmal pro Abschnitt) ---------- */
-
-.price-note {
-  display: inline-flex;
-  flex-direction: column;
-  gap: 2px;
-  margin-bottom: 24px;
-  padding: 14px 20px;
-  background: var(--accent-soft);
-  border-left: 4px solid var(--accent);
-  border-radius: 12px;
-}
-
-.price-note p {
-  margin: 0;
-  font-size: 18px;
-}
-
-.price-note strong {
-  color: var(--accent);
-}
-
-.price-note-small {
-  margin-top: 4px !important;
-  font-size: 16px !important;
-  color: var(--muted);
-}
-
-
-/* ---------- Produktkarten ---------- */
-
-.grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 16px;
-}
-
-.card {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  overflow: hidden;
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 20px;
-}
-
-.card-media {
-  position: relative;
-  overflow: hidden;
-}
-
-.card img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-}
-
-.card img.rot {
-  transform: rotate(-90deg);
-}
-
-/* Nummer auf dem Foto, wie ein Etikett */
-.nr {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  z-index: 1;
-  padding: 6px 14px;
-  background: var(--card);
-  color: var(--ink);
-  border-radius: 999px;
-  font-family: var(--display);
-  font-size: 20px;
-  font-weight: 800;
-  box-shadow: 0 2px 8px rgba(26, 24, 20, .15);
-}
-
-.card-body {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  gap: 12px;
-  padding: 18px 20px 20px;
-}
-
-.card h3 {
-  font-size: 24px;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-}
-
-.card p {
-  margin: 0;
-  font-size: 17px;
-  line-height: 1.45;
-  color: var(--muted);
-}
-
-
-/* ---------- Produkt mit Auswahl ---------- */
-
-.product {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.product + .product {
-  padding-top: 16px;
-  border-top: 1px solid var(--line);
-}
-
-.card-intro {
-  margin-bottom: 4px !important;
-}
-
-.product-nr {
-  color: var(--accent);
-}
-
-/* Knopf „+ Auswählen“ (wenn noch nichts gewählt ist) */
-.pick-add {
-  width: 100%;
-  height: 60px;
-  border: 2px solid var(--accent);
-  border-radius: 999px;
-  background: transparent;
-  color: var(--accent);
-  font: 600 19px/1 var(--text);
-  cursor: pointer;
-  transition: background .15s ease, color .15s ease, transform .1s ease;
-}
-
-.pick-add:hover {
-  background: var(--accent);
-  color: var(--bg);
-}
-
-/* −  2 Stück  +  (sobald etwas gewählt ist) */
-.pick-stepper {
-  display: none;
-  align-items: center;
-  justify-content: space-between;
-  height: 60px;
-  padding: 6px;
-  background: var(--accent);
-  border-radius: 999px;
-  color: var(--bg);
-}
-
-.product.is-selected .pick-add {
-  display: none;
-}
-
-.product.is-selected .pick-stepper {
-  display: flex;
-}
-
-.pick-stepper button {
-  width: 48px;
-  height: 48px;
-  padding: 0;
-  border: 0;
-  border-radius: 50%;
-  background: var(--bg);
-  color: var(--accent);
-  font: 500 28px/1 var(--text);
-  cursor: pointer;
-  transition: transform .1s ease;
-}
-
-.pick-add:active,
-.pick-stepper button:active {
-  transform: scale(.94);
-}
-
-.pick-stepper .count {
-  font-family: var(--display);
-  font-size: 22px;
-  font-weight: 800;
-}
-
-
-/* ---------- Kurze Erklärung nach dem Hero ---------- */
-
-.howto .wrap {
-  padding: 0 20px;
-}
-
-.howto-box {
-  padding: 18px 20px;
-  background: var(--accent-soft);
-  border-radius: 20px;
-}
-
-.howto-box b {
-  font-family: var(--display);
-  font-size: 22px;
-  font-weight: 800;
-}
-
-.howto-box p {
-  margin: 4px 0 0;
-  font-size: 18px;
-}
-
-
-/* ---------- Bestell-Leiste unten (immer sichtbar) ---------- */
-
-.order-bar {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 20;
-  padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
-  background: rgba(245, 241, 234, .92);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  border-top: 1px solid var(--line);
-}
-
-.order-bar-inner {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  max-width: 1120px;
-  margin: 0 auto;
-}
-
-/* Anzahl im Knopf, z. B. „3“ */
-.order-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 28px;
-  height: 28px;
-  padding: 0 8px;
-  background: var(--bg);
-  color: var(--accent);
-  border-radius: 999px;
-  font-size: 16px;
-  font-weight: 800;
-}
-
-.order-badge[hidden] {
-  display: none;
-}
-
-/* Der Haupt-Knopf */
-.btn-whatsapp {
-  display: flex;
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  min-height: 60px;
-  padding: 16px 24px;
-  font-size: 18px;
-  font-weight: 700;
-  white-space: nowrap;
-  box-shadow: 0 6px 18px rgba(44, 70, 54, .35);
-}
-
-.btn-whatsapp:hover {
-  opacity: 1;
-  background: #233A2C;
-}
-
-.btn-icon {
-  width: 22px;
-  height: 22px;
-  flex-shrink: 0;
-}
-
-.btn-whatsapp.bump {
-  animation: bump .35s ease;
-}
-
-@keyframes bump {
-  0%   { transform: scale(1); }
-  40%  { transform: scale(1.05); }
-  100% { transform: scale(1); }
-}
-
-body {
-  padding-bottom: 96px;
-}
-
-
-/* ---------- Gut zu wissen ---------- */
-
-#infos .wrap {
-  padding: 40px 20px 48px;
-}
-
-#infos h2 {
-  margin: 0 0 20px;
-  font-size: 38px;
-  line-height: 1;
-  letter-spacing: -0.03em;
-}
-
-.infos {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.info {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 20px;
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 20px;
-}
-
-.info b {
-  font-family: var(--display);
-  font-size: 26px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-}
-
-.info p {
-  margin: 0;
-  font-size: 17px;
-  color: var(--muted);
-}
-
-.info.is-accent {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: var(--bg);
-}
-
-.info.is-accent p {
-  color: var(--on-accent);
-}
-
-
-/* ---------- Bestellen ---------- */
-
-.order {
-  background: var(--ink);
-  color: var(--bg);
-}
-
-.order .wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 48px 20px 32px;
-}
-
-.order h2 {
-  font-size: 44px;
-  line-height: .95;
-  letter-spacing: -0.03em;
-}
-
-.order .lead {
-  color: var(--dark-muted);
-}
-
-.steps {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.steps li {
-  display: flex;
-  align-items: baseline;
-  gap: 16px;
-  padding-top: 12px;
-  border-top: 1px solid var(--dark-line);
-}
-
-.step-nr {
-  font-family: var(--display);
-  font-size: 22px;
-  font-weight: 800;
-  color: var(--dark-muted);
-}
-
-/* Beispiel-Nachricht, sieht aus wie eine Chat-Blase */
-.example {
-  padding: 16px 20px;
-  background: #2E3A31;
-  border-radius: 18px 18px 18px 4px;
-}
-
-.example-label {
-  display: block;
-  margin-bottom: 4px;
-  font-size: 14px;
-  color: var(--dark-muted);
-}
-
-.example p {
-  margin: 0;
-  font-size: 18px;
-}
-
-
-/* ==========================================================
-   Tablet (ab 720 px)
-   ========================================================== */
-
-@media (min-width: 720px) {
-
-  .hero .wrap,
-  .howto .wrap,
-  .section .wrap,
-  #infos .wrap,
-  .order .wrap {
-    padding-left: 32px;
-    padding-right: 32px;
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Weihnachtsaktion 2026 – Holzanhänger von Gerhard &amp; Julia</title>
+  <meta name="description" content="Gelaserte Holzanhänger mit Namen und Weihnachts-Sets. Regional und handgemacht. Abholung in Kiefersfelden oder München oder Versand. Bestellschluss 18.12.">
+  <meta name="theme-color" content="#F5F1EA">
+
+  <!-- Link-Vorschau (z. B. WhatsApp) -->
+  <meta property="og:title" content="Weihnachtsaktion 2026 – Holzanhänger von Gerhard &amp; Julia">
+  <meta property="og:description" content="Gelaserte Holzanhänger mit Namen und Weihnachts-Sets. Bestellschluss 18.12.">
+  <!-- Hier die volle Adresse eintragen, z. B. https://eure-seite.de/Produktbilder/hero-geschenkanhaenger-tanne.jpg -->
+  <meta property="og:image" content="Produktbilder/hero-geschenkanhaenger-tanne.jpg">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<!--
+  WHATSAPP-NUMMER: Steht nur an EINER Stelle, ganz unten im <script>.
+
+  PRODUKT HINZUFÜGEN: Einen <div class="product" ...>-Block kopieren und
+  data-name anpassen. data-namen="ja" bedeutet: Kunde soll Namen dazuschreiben.
+-->
+
+<body>
+<main>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <div class="wrap">
+      <img class="hero-img"
+           src="Produktbilder/hero-geschenkanhaenger-tanne.jpg"
+           alt="Holzanhänger „Viel Freude mit deinem Geschenk“ am Tannenzweig"
+           width="1000" height="1250">
+
+      <div class="hero-text">
+        <h1>Servus</h1>
+        <p class="lead">Wir, Gerhard und Julia, lasern wieder Weihnachtsdeko, schon im dritten Jahr. Alles selbst gemacht, aus Holz.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== Kurze Erklärung ===== -->
+  <section class="howto">
+    <div class="wrap">
+      <div class="howto-box">
+        <b>So geht’s:</b>
+        <p>Tippe bei allem, was dir gefällt, auf „Auswählen“. Deine Auswahl steht dann automatisch in der WhatsApp-Nachricht.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== Personalisiert ===== -->
+  <section class="section" id="personalisiert">
+    <div class="wrap">
+      <div class="eyebrow">Personalisiert</div>
+      <h2>Mit Namen.</h2>
+
+      <div class="price-note">
+        <p><strong>5 €</strong> pro Anhänger</p>
+        <p><strong>5 Stück für 20&nbsp;€</strong> – gern gemischt</p>
+        <p class="price-note-small">Geschenkanhänger Nr. 5 + 6: 3 Stück für 10&nbsp;€</p>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-media">
+            <span class="nr">Nr. 1 + Nr. 2</span>
+            <img src="Produktbilder/zweig-kugeln-mit-namen.jpg"
+                 alt="Kugeln mit Schneeflocke und Tannenzweig, mit den Namen Maximilian und Elisabeth"
+                 loading="lazy" width="1000" height="1250">
+          </div>
+          <div class="card-body">
+            <div class="product" data-name="Nr. 1 Schneeflocke" data-namen="ja">
+              <h3><span class="product-nr">Nr. 1</span> Schneeflocke</h3>
+            </div>
+            <div class="product" data-name="Nr. 2 Tannenzweig" data-namen="ja">
+              <h3><span class="product-nr">Nr. 2</span> Tannenzweig</h3>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-media">
+            <span class="nr">Nr. 3 + Nr. 4</span>
+            <img src="Produktbilder/pulli-und-baum-mit-namen.jpg"
+                 alt="Pullover- und Tannenbaum-Anhänger mit Namen an einem Geschenk"
+                 loading="lazy" width="1000" height="1250">
+          </div>
+          <div class="card-body">
+            <div class="product" data-name="Nr. 3 Pullover" data-namen="ja">
+              <h3><span class="product-nr">Nr. 3</span> Pullover</h3>
+            </div>
+            <div class="product" data-name="Nr. 4 Tannenbaum" data-namen="ja">
+              <h3><span class="product-nr">Nr. 4</span> Tannenbaum</h3>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-media">
+            <span class="nr">Nr. 5 + Nr. 6</span>
+            <img class="rot"
+                 src="Produktbilder/geschenkanhaenger-mit-namen.jpg"
+                 alt="Geschenkanhänger „für Christine“ und „für Severin“ auf Leinen"
+                 loading="lazy" width="1000" height="1250">
+          </div>
+          <div class="card-body">
+            <p class="card-intro">Geschenkanhänger „für …“ mit Namen, 3 Stück für 10&nbsp;€.</p>
+            <div class="product" data-name="Nr. 5 Geschenkanhänger Eiskristall" data-namen="ja">
+              <h3><span class="product-nr">Nr. 5</span> Eiskristall</h3>
+            </div>
+            <div class="product" data-name="Nr. 6 Geschenkanhänger schlicht" data-namen="ja">
+              <h3><span class="product-nr">Nr. 6</span> Schlicht</h3>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== Sets ===== -->
+  <section class="section" id="sets">
+    <div class="wrap">
+      <div class="eyebrow">Sets</div>
+      <h2>Fertig zum Aufhängen.</h2>
+
+      <div class="price-note">
+        <p><strong>8 €</strong> pro Set</p>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-media">
+            <span class="nr">Nr. 7</span>
+            <img src="Produktbilder/set-weihnachtspost.jpg"
+                 alt="Briefmarken-Anhänger an einem Geschenk mit grüner Schleife"
+                 loading="lazy" width="1000" height="1250">
+          </div>
+          <div class="card-body">
+            <div class="product" data-name="Nr. 7 Weihnachtspost-Set">
+              <h3><span class="product-nr">Nr. 7</span> Weihnachtspost</h3>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-media">
+            <span class="nr">Nr. 8</span>
+            <img src="Produktbilder/set-skifahrer.jpg"
+                 alt="Gondel-Anhänger „Frohe Weihnachten“ und Skifahrer-Kugel"
+                 loading="lazy" width="1000" height="1250">
+          </div>
+          <div class="card-body">
+            <div class="product" data-name="Nr. 8 Skifahrer-Set">
+              <h3><span class="product-nr">Nr. 8</span> Skifahrer-Set</h3>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-media">
+            <span class="nr">Nr. 9</span>
+            <img src="Produktbilder/set-line-art-kugeln.jpg"
+                 alt="Kugeln mit gezeichnetem Rentier, Glocke und Bäumen"
+                 loading="lazy" width="1000" height="1250">
+          </div>
+          <div class="card-body">
+            <div class="product" data-name="Nr. 9 Rentier-und-Glocke-Set">
+              <h3><span class="product-nr">Nr. 9</span> Rentier &amp; Glocke</h3>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-media">
+            <span class="nr">Nr. 10</span>
+            <img src="Produktbilder/set-tannenbaeume.jpg"
+                 alt="Drei Tannenbaum-Anhänger aus Holz am Zweig"
+                 loading="lazy" width="1000" height="1250">
+          </div>
+          <div class="card-body">
+            <div class="product" data-name="Nr. 10 Tannenbaum-Set">
+              <h3><span class="product-nr">Nr. 10</span> Tannenbäume</h3>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== Gut zu wissen ===== -->
+  <section id="infos">
+    <div class="wrap">
+      <h2>Gut zu wissen:</h2>
+
+      <div class="infos">
+        <div class="info">
+          <b>Höchstens 7 Tage</b>
+          <p>So lange dauern Lasern und Versand, ab deiner Bestellung.</p>
+        </div>
+
+        <div class="info">
+          <b>Abholen oder Versand</b>
+          <p>Abholung in Kiefersfelden oder München, oder wir schicken sie dir. Wie die Anhänger zu dir kommen, besprechen wir. Wir finden einen Weg.</p>
+        </div>
+
+        <div class="info is-accent">
+          <b>Bestellschluss 18.12.</b>
+          <p>Damit alles vor Weihnachten bei dir ist.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== Bestellen ===== -->
+  <section class="order" id="bestellen">
+    <div class="wrap">
+      <h2>So einfach geht’s.</h2>
+      <p class="lead">Den Rest machen wir.</p>
+
+      <ol class="steps">
+        <li><span class="step-nr">01</span><span>Bei allem, was dir gefällt, auf „Auswählen“ tippen</span></li>
+        <li><span class="step-nr">02</span><span>Unten auf „Per WhatsApp bestellen“ tippen</span></li>
+        <li><span class="step-nr">03</span><span>Namen dazuschreiben und abschicken</span></li>
+      </ol>
+
+      <div class="example">
+        <span class="example-label">Oder schreib uns einfach selbst, zum Beispiel:</span>
+        <p>„2× Nr. 1 mit Oma und Opa, 1× Nr. 8.“</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+
+<!-- ===== Bestell-Leiste (immer unten sichtbar) ===== -->
+<div class="order-bar">
+  <div class="order-bar-inner">
+    <a class="btn btn-primary btn-whatsapp wa-link" id="order-btn" href="#bestellen">
+      <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.4 3.6c-.6.5-1.6.1-1.6-.8V5.5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+      Per WhatsApp bestellen
+      <span class="order-badge" id="order-bar-count" hidden></span>
+    </a>
+  </div>
+</div>
+
+
+<script>
+  // WHATSAPP-NUMMER: nur hier ändern.
+  // Format: Ländervorwahl ohne + und ohne führende 0, keine Leerzeichen.
+  // Beispiel: 0170 1234567 (Deutschland) wird zu 491701234567
+  const WHATSAPP_NUMMER = "491738282553";
+
+  const products = document.querySelectorAll(".product");
+  const barCount = document.getElementById("order-bar-count");
+  const links    = document.querySelectorAll(".wa-link");
+
+  // Auswahl bei jedem Produkt einbauen:
+  // erst ein großer Knopf „Auswählen“, danach  −  Anzahl  +
+  products.forEach(function (product) {
+    product.dataset.count = 0;
+
+    const picker = document.createElement("div");
+    picker.className = "picker";
+    picker.innerHTML =
+      '<button type="button" class="pick-add">+ Auswählen</button>' +
+      '<div class="pick-stepper">' +
+        '<button type="button" class="minus" aria-label="Eins weniger">−</button>' +
+        '<span class="count" aria-live="polite">0</span>' +
+        '<button type="button" class="plus" aria-label="Eins mehr">+</button>' +
+      '</div>';
+    product.appendChild(picker);
+
+    picker.querySelector(".pick-add").addEventListener("click", function () { change(product, 1); });
+    picker.querySelector(".plus").addEventListener("click", function () { change(product, 1); });
+    picker.querySelector(".minus").addEventListener("click", function () { change(product, -1); });
+  });
+
+  function change(product, delta) {
+    const count = Math.max(0, Number(product.dataset.count) + delta);
+    product.dataset.count = count;
+    product.querySelector(".count").textContent = count + " Stück";
+    product.classList.toggle("is-selected", count > 0);
+    update();
   }
 
-  .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 24px;
+  // WhatsApp-Nachricht aus der Auswahl zusammenbauen
+  function update() {
+    let total = 0;
+    const blocks = [];
+
+    products.forEach(function (product) {
+      const count = Number(product.dataset.count);
+      if (count === 0) return;
+      total += count;
+
+      let block = count + "× " + product.dataset.name;
+
+      // Bei personalisierten Anhängern: pro Stück eine Zeile für den Namen
+      if (product.dataset.namen === "ja") {
+        block += "\n";
+        for (let i = 1; i <= count; i++) {
+          block += "\n" + (count === 1 ? "Name: " : "Name " + i + ": ");
+        }
+      }
+      blocks.push(block);
+    });
+
+    // Nichts ausgewählt: einfache Nachricht ohne Liste
+    let text = "Hallo Gerhard und Julia, ich möchte gerne bestellen: ";
+    if (total > 0) {
+      text = "Hallo Gerhard und Julia, ich möchte gerne bestellen:\n\n" + blocks.join("\n\n");
+    }
+
+    links.forEach(function (link) {
+      link.href = "https://wa.me/" + WHATSAPP_NUMMER + "?text=" + encodeURIComponent(text);
+      link.target = "_blank";
+      link.rel = "noopener";
+    });
+
+    barCount.hidden = total === 0;
+    barCount.textContent = total;
+    barCount.setAttribute("aria-label", total + " ausgewählt");
+
+    // kleiner „Hüpfer“ des Knopfs als Rückmeldung
+    const btn = document.getElementById("order-btn");
+    btn.classList.remove("bump");
+    void btn.offsetWidth;
+    if (total > 0) btn.classList.add("bump");
   }
 
-  .infos {
-    flex-direction: row;
-  }
-
-  .info {
-    flex: 1;
-  }
-}
-
-
-/* ==========================================================
-   Desktop (ab 960 px)
-   ========================================================== */
-
-@media (min-width: 960px) {
-
-  /* Hero: Bild links, Text rechts */
-  .hero .wrap {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    gap: 56px;
-    padding-top: 40px;
-    padding-bottom: 72px;
-  }
-
-  .hero-img {
-    height: 600px;
-    border-radius: 36px;
-  }
-
-  .hero h1 {
-    font-size: 76px;
-  }
-
-  .lead {
-    font-size: 20px;
-  }
-
-  /* Abschnitte */
-  .section .wrap {
-    padding-top: 80px;
-  }
-
-  .section h2,
-  #infos h2 {
-    font-size: 56px;
-  }
-
-  .card h3 {
-    font-size: 26px;
-  }
-
-  .order-bar {
-    padding-left: 32px;
-    padding-right: 32px;
-  }
-
-  .order-bar-inner {
-    justify-content: flex-end;
-  }
-
-  .btn-whatsapp {
-    flex: 0 0 auto;
-    padding: 16px 40px;
-  }
-
-  /* Bestellen: Text links, Schritte rechts */
-  .order .wrap {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 64px;
-    row-gap: 20px;
-    padding-top: 80px;
-    padding-bottom: 80px;
-  }
-
-  .order h2 {
-    grid-column: 1;
-    font-size: 72px;
-  }
-
-  .order .lead {
-    grid-column: 1;
-  }
-
-  .order .example {
-    grid-column: 1;
-  }
-
-  .order .steps {
-    grid-column: 2;
-    grid-row: 1 / span 4;
-    align-self: center;
-  }
-
-}
+  update();
+</script>
+</body>
+</html>
