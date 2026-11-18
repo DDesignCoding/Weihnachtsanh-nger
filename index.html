@@ -18,10 +18,10 @@
 </head>
 
 <!--
-  WHATSAPP-NUMMER: Steht nur noch an EINER Stelle, ganz unten im <script>.
-  Alle Bestell-Knöpfe holen sich die Nummer von dort.
+  WHATSAPP-NUMMER: Steht nur an EINER Stelle, ganz unten im <script>.
 
-  Bestell-Text eines Knopfs ändern: einfach den Text in data-text="..." anpassen.
+  PRODUKT HINZUFÜGEN: Einen <div class="product" ...>-Block kopieren und
+  data-name anpassen. data-namen="ja" bedeutet: Kunde soll Namen dazuschreiben.
 -->
 
 <body>
@@ -38,74 +38,74 @@
       <div class="hero-text">
         <h1>Servus</h1>
         <p class="lead">Wir, Gerhard und Julia, lasern wieder Weihnachtsdeko, schon im dritten Jahr. Alles selbst gemacht, aus Holz.</p>
-        <p class="lead">Such dir einfach die <strong>Nummer</strong> aus, die dir gefällt, und schreib sie uns per WhatsApp.</p>
+        <p class="lead">Such dir aus, was dir gefällt, und schick uns deine Auswahl per WhatsApp.</p>
 
-        <a class="btn btn-primary wa-link" href="#bestellen"
-           data-text="Hallo Gerhard und Julia, ich möchte gerne Anhänger bestellen: ">Jetzt per WhatsApp bestellen</a>
+        <a class="btn btn-primary" href="#personalisiert">Anhänger ansehen</a>
       </div>
     </div>
   </section>
 
 
-  <!-- ===== Mit Namen ===== -->
+  <!-- ===== Personalisiert ===== -->
   <section class="section" id="personalisiert">
     <div class="wrap">
-      <div class="eyebrow">Mit Namen</div>
-      <h2>Mit deinem Wunschnamen.</h2>
-      <p class="section-intro">Jeder Name, den du willst.</p>
+      <div class="eyebrow">Personalisiert</div>
+      <h2>Mit Namen.</h2>
 
       <div class="price-note">
         <p><strong>5 €</strong> pro Anhänger</p>
         <p><strong>5 Stück für 20 €</strong> – gern gemischt</p>
-        <p class="price-note-small">Geschenkanhänger Nr. 4: 3 Stück für 10 €</p>
+        <p class="price-note-small">Geschenkanhänger Nr. 5: 3 Stück für 10 €</p>
       </div>
 
       <div class="grid">
         <article class="card">
           <div class="card-media">
-            <span class="nr">Nr. 1</span>
+            <span class="nr">Nr. 1 + Nr. 2</span>
             <img src="Produktbilder/zweig-kugeln-mit-namen.jpg"
-                 alt="Zweig-Kugeln mit den Namen Maximilian und Elisabeth"
+                 alt="Kugeln mit Schneeflocke und Tannenzweig, mit den Namen Maximilian und Elisabeth"
                  loading="lazy" width="1000" height="1250">
           </div>
           <div class="card-body">
-            <h3>Kugel mit Zweig</h3>
-            <a class="btn btn-order wa-link" href="#bestellen"
-               data-text="Hallo Gerhard und Julia, ich möchte Nr. 1 (Kugel mit Zweig) bestellen. Name(n): ">Nr. 1 bestellen</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-media">
-            <span class="nr">Nr. 2 + Nr. 3</span>
-            <img src="Produktbilder/pulli-und-baum-mit-namen.jpg"
-                 alt="Pullover- und Tannenbaum-Anhänger mit Namen an einem Geschenk"
-                 loading="lazy" width="1000" height="1250">
-          </div>
-          <div class="card-body">
-            <h3>Nr. 2 Pullover<br>Nr. 3 Tannenbaum</h3>
-            <div class="btn-row">
-              <a class="btn btn-order wa-link" href="#bestellen"
-                 data-text="Hallo Gerhard und Julia, ich möchte Nr. 2 (Pullover) bestellen. Name(n): ">Nr. 2 bestellen</a>
-              <a class="btn btn-order wa-link" href="#bestellen"
-                 data-text="Hallo Gerhard und Julia, ich möchte Nr. 3 (Tannenbaum) bestellen. Name(n): ">Nr. 3 bestellen</a>
+            <div class="product" data-name="Nr. 1 Schneeflocke" data-namen="ja">
+              <h3><span class="product-nr">Nr. 1</span> Schneeflocke</h3>
+            </div>
+            <div class="product" data-name="Nr. 2 Tannenzweig" data-namen="ja">
+              <h3><span class="product-nr">Nr. 2</span> Tannenzweig</h3>
             </div>
           </div>
         </article>
 
         <article class="card">
           <div class="card-media">
-            <span class="nr">Nr. 4</span>
+            <span class="nr">Nr. 3 + Nr. 4</span>
+            <img src="Produktbilder/pulli-und-baum-mit-namen.jpg"
+                 alt="Pullover- und Tannenbaum-Anhänger mit Namen an einem Geschenk"
+                 loading="lazy" width="1000" height="1250">
+          </div>
+          <div class="card-body">
+            <div class="product" data-name="Nr. 3 Pullover" data-namen="ja">
+              <h3><span class="product-nr">Nr. 3</span> Pullover</h3>
+            </div>
+            <div class="product" data-name="Nr. 4 Tannenbaum" data-namen="ja">
+              <h3><span class="product-nr">Nr. 4</span> Tannenbaum</h3>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-media">
+            <span class="nr">Nr. 5</span>
             <img class="rot"
                  src="Produktbilder/geschenkanhaenger-mit-namen.jpg"
                  alt="Geschenkanhänger „für Christine“ und „für Severin“ auf Leinen"
                  loading="lazy" width="1000" height="1250">
           </div>
           <div class="card-body">
-            <h3>Geschenkanhänger</h3>
+            <div class="product" data-name="Nr. 5 Geschenkanhänger" data-namen="ja">
+              <h3><span class="product-nr">Nr. 5</span> Geschenkanhänger</h3>
+            </div>
             <p>„für …“ mit Namen, 3 Stück für 10 €.</p>
-            <a class="btn btn-order wa-link" href="#bestellen"
-               data-text="Hallo Gerhard und Julia, ich möchte Nr. 4 (Geschenkanhänger) bestellen. Name(n): ">Nr. 4 bestellen</a>
           </div>
         </article>
       </div>
@@ -118,7 +118,6 @@
     <div class="wrap">
       <div class="eyebrow">Sets</div>
       <h2>Fertig zum Aufhängen.</h2>
-      <p class="section-intro">Ohne Namen, direkt fertig.</p>
 
       <div class="price-note">
         <p><strong>8 €</strong> pro Set</p>
@@ -127,57 +126,57 @@
       <div class="grid">
         <article class="card">
           <div class="card-media">
-            <span class="nr">Nr. 5</span>
+            <span class="nr">Nr. 6</span>
             <img src="Produktbilder/set-weihnachtspost.jpg"
                  alt="Briefmarken-Anhänger an einem Geschenk mit grüner Schleife"
                  loading="lazy" width="1000" height="1250">
           </div>
           <div class="card-body">
-            <h3>Weihnachtspost</h3>
-            <a class="btn btn-order wa-link" href="#bestellen"
-               data-text="Hallo Gerhard und Julia, ich möchte das Set Nr. 5 (Weihnachtspost) bestellen. Anzahl: ">Nr. 5 bestellen</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-media">
-            <span class="nr">Nr. 6</span>
-            <img src="Produktbilder/set-skifahrer.jpg"
-                 alt="Gondel-Anhänger „Frohe Weihnachten“ und Skifahrer-Kugel"
-                 loading="lazy" width="1000" height="1250">
-          </div>
-          <div class="card-body">
-            <h3>Skifahrer</h3>
-            <a class="btn btn-order wa-link" href="#bestellen"
-               data-text="Hallo Gerhard und Julia, ich möchte das Set Nr. 6 (Skifahrer) bestellen. Anzahl: ">Nr. 6 bestellen</a>
+            <div class="product" data-name="Nr. 6 Weihnachtspost (Set)">
+              <h3><span class="product-nr">Nr. 6</span> Weihnachtspost</h3>
+            </div>
           </div>
         </article>
 
         <article class="card">
           <div class="card-media">
             <span class="nr">Nr. 7</span>
-            <img src="Produktbilder/set-line-art-kugeln.jpg"
-                 alt="Kugeln mit gezeichnetem Rentier, Glocke und Bäumen"
+            <img src="Produktbilder/set-skifahrer.jpg"
+                 alt="Gondel-Anhänger „Frohe Weihnachten“ und Skifahrer-Kugel"
                  loading="lazy" width="1000" height="1250">
           </div>
           <div class="card-body">
-            <h3>Rentier &amp; Glocke</h3>
-            <a class="btn btn-order wa-link" href="#bestellen"
-               data-text="Hallo Gerhard und Julia, ich möchte das Set Nr. 7 (Rentier und Glocke) bestellen. Anzahl: ">Nr. 7 bestellen</a>
+            <div class="product" data-name="Nr. 7 Skifahrer (Set)">
+              <h3><span class="product-nr">Nr. 7</span> Skifahrer</h3>
+            </div>
           </div>
         </article>
 
         <article class="card">
           <div class="card-media">
             <span class="nr">Nr. 8</span>
+            <img src="Produktbilder/set-line-art-kugeln.jpg"
+                 alt="Kugeln mit gezeichnetem Rentier, Glocke und Bäumen"
+                 loading="lazy" width="1000" height="1250">
+          </div>
+          <div class="card-body">
+            <div class="product" data-name="Nr. 8 Rentier &amp; Glocke (Set)">
+              <h3><span class="product-nr">Nr. 8</span> Rentier &amp; Glocke</h3>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-media">
+            <span class="nr">Nr. 9</span>
             <img src="Produktbilder/set-tannenbaeume.jpg"
                  alt="Drei Tannenbaum-Anhänger aus Holz am Zweig"
                  loading="lazy" width="1000" height="1250">
           </div>
           <div class="card-body">
-            <h3>Tannenbäume</h3>
-            <a class="btn btn-order wa-link" href="#bestellen"
-               data-text="Hallo Gerhard und Julia, ich möchte das Set Nr. 8 (Tannenbäume) bestellen. Anzahl: ">Nr. 8 bestellen</a>
+            <div class="product" data-name="Nr. 9 Tannenbäume (Set)">
+              <h3><span class="product-nr">Nr. 9</span> Tannenbäume</h3>
+            </div>
           </div>
         </article>
       </div>
@@ -213,26 +212,35 @@
   <!-- ===== Bestellen ===== -->
   <section class="order" id="bestellen">
     <div class="wrap">
-      <h2>Schreib uns einfach.</h2>
-      <p class="lead">Nummer + Name reicht. Den Rest machen wir.</p>
+      <h2>So einfach geht’s.</h2>
+      <p class="lead">Den Rest machen wir.</p>
 
       <ol class="steps">
-        <li><span class="step-nr">01</span><span>Nummer aussuchen</span></li>
-        <li><span class="step-nr">02</span><span>Nummer und Namen per WhatsApp schicken</span></li>
-        <li><span class="step-nr">03</span><span>Abholen oder schicken lassen, in höchstens 7 Tagen</span></li>
+        <li><span class="step-nr">01</span><span>Bei jedem Anhänger, den du willst, auf <b>+</b> tippen</span></li>
+        <li><span class="step-nr">02</span><span>Unten auf „Per WhatsApp bestellen“ tippen</span></li>
+        <li><span class="step-nr">03</span><span>Namen dazuschreiben und abschicken</span></li>
       </ol>
 
       <div class="example">
-        <span class="example-label">So kann deine Nachricht aussehen:</span>
-        <p>„2× Nr. 1 mit Oma und Opa, 1× Nr. 6. Abholung in München.“</p>
+        <span class="example-label">Oder schreib uns einfach selbst, zum Beispiel:</span>
+        <p>„2× Nr. 1 mit Oma und Opa, 1× Nr. 7.“</p>
       </div>
 
-      <a class="btn btn-light wa-link" href="#bestellen"
-         data-text="Hallo Gerhard und Julia, ich möchte gerne Anhänger bestellen: ">Per WhatsApp bestellen</a>
+      <a class="btn btn-light wa-link" href="#bestellen">Per WhatsApp bestellen</a>
     </div>
   </section>
 
 </main>
+
+
+<!-- ===== Bestell-Leiste (erscheint, sobald etwas ausgewählt ist) ===== -->
+<div class="order-bar" id="order-bar" hidden>
+  <div class="order-bar-inner">
+    <span class="order-bar-count" id="order-bar-count">1 ausgewählt</span>
+    <a class="btn btn-light wa-link" href="#bestellen">Per WhatsApp bestellen</a>
+  </div>
+</div>
+
 
 <script>
   // WHATSAPP-NUMMER: nur hier ändern.
@@ -240,11 +248,68 @@
   // Beispiel: 0170 1234567 (Deutschland) wird zu 491701234567
   const WHATSAPP_NUMMER = "491738282553";
 
-  document.querySelectorAll(".wa-link").forEach(function (link) {
-    link.href = "https://wa.me/" + WHATSAPP_NUMMER + "?text=" + encodeURIComponent(link.dataset.text);
-    link.target = "_blank";
-    link.rel = "noopener";
+  const products = document.querySelectorAll(".product");
+  const bar      = document.getElementById("order-bar");
+  const barCount = document.getElementById("order-bar-count");
+  const links    = document.querySelectorAll(".wa-link");
+
+  // − 0 + bei jedem Produkt einbauen
+  products.forEach(function (product) {
+    product.dataset.count = 0;
+
+    const stepper = document.createElement("div");
+    stepper.className = "stepper";
+    stepper.innerHTML =
+      '<button type="button" class="minus" aria-label="Eins weniger">−</button>' +
+      '<span class="count" aria-live="polite">0</span>' +
+      '<button type="button" class="plus" aria-label="Eins mehr">+</button>';
+    product.appendChild(stepper);
+
+    stepper.querySelector(".plus").addEventListener("click", function () { change(product, 1); });
+    stepper.querySelector(".minus").addEventListener("click", function () { change(product, -1); });
   });
+
+  function change(product, delta) {
+    const count = Math.max(0, Number(product.dataset.count) + delta);
+    product.dataset.count = count;
+    product.querySelector(".count").textContent = count;
+    product.classList.toggle("is-selected", count > 0);
+    update();
+  }
+
+  // WhatsApp-Nachricht aus der Auswahl zusammenbauen
+  function update() {
+    let total = 0;
+    let needsNames = false;
+    const lines = [];
+
+    products.forEach(function (product) {
+      const count = Number(product.dataset.count);
+      if (count > 0) {
+        total += count;
+        lines.push(count + "× " + product.dataset.name);
+        if (product.dataset.namen === "ja") needsNames = true;
+      }
+    });
+
+    let text = "Hallo Gerhard und Julia, ich möchte gerne Anhänger bestellen: ";
+    if (total > 0) {
+      text = "Hallo Gerhard und Julia, ich möchte gerne bestellen:\n\n" + lines.join("\n");
+      if (needsNames) text += "\n\nNamen: ";
+    }
+
+    links.forEach(function (link) {
+      link.href = "https://wa.me/" + WHATSAPP_NUMMER + "?text=" + encodeURIComponent(text);
+      link.target = "_blank";
+      link.rel = "noopener";
+    });
+
+    bar.hidden = total === 0;
+    document.body.classList.toggle("has-order-bar", total > 0);
+    barCount.textContent = total + " ausgewählt";
+  }
+
+  update();
 </script>
 </body>
 </html>
