@@ -38,7 +38,6 @@
       <div class="hero-text">
         <h1>Servus</h1>
         <p class="lead">Wir, Gerhard und Julia, lasern wieder Weihnachtsdeko, schon im dritten Jahr. Alles selbst gemacht, aus Holz.</p>
-        <a class="btn btn-primary wa-link" href="#bestellen">Jetzt per WhatsApp bestellen</a>
       </div>
     </div>
   </section>
@@ -141,7 +140,7 @@
                  loading="lazy" width="1000" height="1250">
           </div>
           <div class="card-body">
-            <div class="product" data-name="Nr. 6 Weihnachtspost (Set)">
+            <div class="product" data-name="Nr. 6 Weihnachtspost-Set">
               <h3><span class="product-nr">Nr. 6</span> Weihnachtspost</h3>
             </div>
           </div>
@@ -155,7 +154,7 @@
                  loading="lazy" width="1000" height="1250">
           </div>
           <div class="card-body">
-            <div class="product" data-name="Nr. 7 Skifahrer (Set)">
+            <div class="product" data-name="Nr. 7 Skifahrer-Set">
               <h3><span class="product-nr">Nr. 7</span> Skifahrer</h3>
             </div>
           </div>
@@ -169,7 +168,7 @@
                  loading="lazy" width="1000" height="1250">
           </div>
           <div class="card-body">
-            <div class="product" data-name="Nr. 8 Rentier &amp; Glocke (Set)">
+            <div class="product" data-name="Nr. 8 Rentier-und-Glocke-Set">
               <h3><span class="product-nr">Nr. 8</span> Rentier &amp; Glocke</h3>
             </div>
           </div>
@@ -183,7 +182,7 @@
                  loading="lazy" width="1000" height="1250">
           </div>
           <div class="card-body">
-            <div class="product" data-name="Nr. 9 Tannenbäume (Set)">
+            <div class="product" data-name="Nr. 9 Tannenbaum-Set">
               <h3><span class="product-nr">Nr. 9</span> Tannenbäume</h3>
             </div>
           </div>
@@ -234,8 +233,6 @@
         <span class="example-label">Oder schreib uns einfach selbst, zum Beispiel:</span>
         <p>„2× Nr. 1 mit Oma und Opa, 1× Nr. 7.“</p>
       </div>
-
-      <a class="btn btn-light wa-link" href="#bestellen">Per WhatsApp bestellen</a>
     </div>
   </section>
 
@@ -245,8 +242,11 @@
 <!-- ===== Bestell-Leiste (immer unten sichtbar) ===== -->
 <div class="order-bar">
   <div class="order-bar-inner">
-    <span class="order-bar-count" id="order-bar-count" hidden></span>
-    <a class="btn btn-light wa-link" href="#bestellen">Per WhatsApp bestellen</a>
+    <a class="btn btn-primary btn-whatsapp wa-link" id="order-btn" href="#bestellen">
+      <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.4 3.6c-.6.5-1.6.1-1.6-.8V5.5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+      Per WhatsApp bestellen
+      <span class="order-badge" id="order-bar-count" hidden></span>
+    </a>
   </div>
 </div>
 
@@ -293,23 +293,29 @@
   // WhatsApp-Nachricht aus der Auswahl zusammenbauen
   function update() {
     let total = 0;
-    let needsNames = false;
-    const lines = [];
+    const blocks = [];
 
     products.forEach(function (product) {
       const count = Number(product.dataset.count);
-      if (count > 0) {
-        total += count;
-        lines.push(count + "× " + product.dataset.name);
-        if (product.dataset.namen === "ja") needsNames = true;
+      if (count === 0) return;
+      total += count;
+
+      let block = count + "× " + product.dataset.name;
+
+      // Bei personalisierten Anhängern: pro Stück eine Zeile für den Namen
+      if (product.dataset.namen === "ja") {
+        block += "\n";
+        for (let i = 1; i <= count; i++) {
+          block += "\n" + (count === 1 ? "Name: " : "Name " + i + ": ");
+        }
       }
+      blocks.push(block);
     });
 
     // Nichts ausgewählt: einfache Nachricht ohne Liste
     let text = "Hallo Gerhard und Julia, ich möchte gerne bestellen: ";
     if (total > 0) {
-      text = "Hallo Gerhard und Julia, ich möchte gerne bestellen:\n\n" + lines.join("\n");
-      if (needsNames) text += "\n\nNamen: ";
+      text = "Hallo Gerhard und Julia, ich möchte gerne bestellen:\n\n" + blocks.join("\n\n");
     }
 
     links.forEach(function (link) {
@@ -319,7 +325,14 @@
     });
 
     barCount.hidden = total === 0;
-    barCount.textContent = total + " ausgewählt";
+    barCount.textContent = total;
+    barCount.setAttribute("aria-label", total + " ausgewählt");
+
+    // kleiner „Hüpfer“ des Knopfs als Rückmeldung
+    const btn = document.getElementById("order-btn");
+    btn.classList.remove("bump");
+    void btn.offsetWidth;
+    if (total > 0) btn.classList.add("bump");
   }
 
   update();
